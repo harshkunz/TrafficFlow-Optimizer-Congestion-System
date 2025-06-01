@@ -1,0 +1,42 @@
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.suo
+*.user
+
+# Compiled files
+bin/
+obj/
+dist/
+build/
+*.exe
+*.dll
+*.pdb
+
+# Dependencies
+node_modules/
+packages/
+vendor/
+
+# Environment files
+.env
+.env.local
+.env.*
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Testing
+coverage/
+.coverage
+htmlcov/
+
+# Temporary files
+temp/
+tmp/
+.DS_Store
+Thumbs.db
