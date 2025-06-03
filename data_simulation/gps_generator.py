@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 fake = Faker()
 
-API_URL = "http://localhost:5000/api/gps"
+API_URL = "http://localhost:5000/api/traffic"
 
 def generate_gps_data():
     if not hasattr(generate_gps_data, "counter"):
@@ -36,7 +36,7 @@ def simulate():
     while True:
         data = generate_gps_data()
         send_data_to_api(data)
-        time.sleep(3)
+        time.sleep(2)
 
 if __name__ == "__main__":
     simulate()

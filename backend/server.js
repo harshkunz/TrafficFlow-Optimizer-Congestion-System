@@ -2,9 +2,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-// testing import
-
-
 const express = require('express');
 const connectToDb = require('./db/db');
 const cors = require('cors');
@@ -19,13 +16,16 @@ app.use(express.urlencoded({ extended: true }));
 
 // Define routes
 const gpsRoutes = require('./routes/gpsRoutes');
+const congestionRoutes = require('./routes/congestionRoutes');
 
 app.use('/api', gpsRoutes);
+app.use('/api', congestionRoutes);
 
 
+
+// testing import
 
 // route testing
-
 
 
 
