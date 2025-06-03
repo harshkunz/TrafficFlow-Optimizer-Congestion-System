@@ -12,7 +12,7 @@ exports.catchGPSData = async (req, res) => {
     }
 };
 
-exports.getGPSData = async (req, res) => {
+exports.getById = async (req, res) => {
     try {
         const gpsEntry = await GPS.findById(req.params.id);
         if(!gpsEntry){
@@ -21,6 +21,16 @@ exports.getGPSData = async (req, res) => {
         res.json(gpsEntry);
     } catch {
         res.status(500).json({ error: err.message });
+    }
+};
+
+exports.getData = async (req, res) => {
+    try {
+        const data = await GPS.find({});
+        res.status(200).json(data);
+    } catch (err) {
+        console.error("Error fetching traffic data:", err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 

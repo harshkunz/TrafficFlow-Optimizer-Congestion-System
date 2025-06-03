@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { catchGPSData, getGPSData } = require('../controllers/gpsController');
+const { catchGPSData, getData, getById } = require('../controllers/gpsController');
 
 
-router.post('/gps', catchGPSData);
-router.get('/gps/:id', getGPSData);
+router.post('/traffic', catchGPSData);
+router.get('/traffic', getData);
+router.get('/traffic/:id', getById);
 
 
 module.exports = router;
