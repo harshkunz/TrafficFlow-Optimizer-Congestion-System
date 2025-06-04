@@ -7,7 +7,7 @@ API_POST_URL = "http://localhost:5000/api/congestion"
 
 VEHICLE_THRESHOLD = 3
 
-def group_by_area(gps_data, precision=2):
+def group_by_area(gps_data, precision=1):
     area_groups = defaultdict(list)
     for data in gps_data:
         lat = round(data['lat'], precision)
@@ -33,12 +33,18 @@ while True:
 
         for area_id, vehicles in areas.items():
             vehicle_count = len(vehicles)
+
+            total_speed = sum(vehicle.get('speed', 0) for vehicle in vehicles)
+            avg_speed = total_speed / vehicle_count if vehicle_count > 0 else 0
+
             level = get_congestion_level(vehicle_count)
 
             congestion_entry = {
                 "areaId": area_id,
                 "vehicleCount": vehicle_count,
-                "congestionLevel": level
+                "avgSpeed": round(avg_speed, 2),
+                "congestionLevel": level,
+                "congestionScore": round(100 - avg_speed, 2)
             }
 
             post_res = requests.post(API_POST_URL, json=congestion_entry)
