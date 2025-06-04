@@ -1,6 +1,7 @@
 import time
 import requests
 import random
+import string
 from faker import Faker
 from datetime import datetime, timezone
 
@@ -8,21 +9,19 @@ fake = Faker()
 
 API_URL = "http://localhost:5000/api/traffic"
 
+def generate_vehicle_id():
+    letters = ''.join(random.choices(string.ascii_uppercase, k=3))
+    digits = ''.join(random.choices(string.digits, k=3))
+    return letters + digits
+
 def generate_gps_data():
-    if not hasattr(generate_gps_data, "counter"):
-        generate_gps_data.counter = 1
-
-    vehicle_id = f"V{generate_gps_data.counter:03d}"
-
     data = {
-        "vehicle_id": vehicle_id,
-        "lat": float(fake.latitude()),
-        "lng": float(fake.longitude()),
+        "vehicle_id": generate_vehicle_id(),
+        "lat": int(fake.latitude()),
+        "lng": int(fake.longitude()),
         "speed": random.randint(20, 80),
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
-
-    generate_gps_data.counter += 1
     return data
 
 def send_data_to_api(data):
