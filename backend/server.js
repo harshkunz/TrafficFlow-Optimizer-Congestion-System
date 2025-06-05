@@ -17,10 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 // Define routes
 const gpsRoutes = require('./routes/gpsRoutes');
 const congestionRoutes = require('./routes/congestionRoutes');
+const serviceRoutes = require('./routes/serviceRoutes');
 
 app.use('/api', gpsRoutes);
 app.use('/api', congestionRoutes);
-
+app.use('/api', serviceRoutes);
 
 
 // testing import
