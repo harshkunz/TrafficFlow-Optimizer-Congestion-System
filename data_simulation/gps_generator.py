@@ -15,10 +15,13 @@ def generate_vehicle_id():
     return letters + digits
 
 def generate_gps_data():
+    lat = round(random.uniform(28.40, 28.90), 3)
+    lng = round(random.uniform(76.80, 77.40), 3)
+
     data = {
         "vehicle_id": generate_vehicle_id(),
-        "lat": int(fake.latitude()),
-        "lng": int(fake.longitude()),
+        "lat": lat,
+        "lng": lng,
         "speed": random.randint(20, 80),
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
