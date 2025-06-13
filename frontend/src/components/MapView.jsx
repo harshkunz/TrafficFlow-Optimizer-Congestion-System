@@ -5,7 +5,7 @@ import axios from "axios";
 
 const vehicleIcon = new L.Icon({
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/252/252025.png',
-  iconSize: [25, 25],
+  iconSize: [20, 20],
 });
 
 const MapView = () => {
@@ -37,13 +37,18 @@ const MapView = () => {
   };
 
   return (
-    <div className="h-[400px] pt-20">
-      <MapContainer center={[28.6139, 77.2090]} zoom={7} className="h-full w-full">
+    <div className="h-[600px] overflow-hidden pt-24 px-12">
+      <MapContainer
+        center={[28.6139, 77.2090]}
+        zoom={7}
+        className="h-full w-full relative z-0"
+      >
         <TileLayer
           attribution='&copy; OpenStreetMap contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
 
+        {/* Vehicle markers */}
         {showMarkers &&
           vehicles.map((v) => (
             <Marker
@@ -59,27 +64,28 @@ const MapView = () => {
           ))
         }
 
+        {/* Circles */}
         {zones.map((zone, i) => {
           const [lat, lng] = zone.areaId.split("_").map(Number);
           return (
             <Circle
               key={i}
-              center={[lat + 0.005, lng + 0.005]} 
+              center={[lat + 0.005, lng + 0.005]}
               radius={100}
               pathOptions={{ color: getColor(zone.congestionLevel) }}
             />
           );
         })}
-
+        
+        {/* Marker Toggle Button */}
         <div className="absolute top-6 right-6 z-[1000]">
           <button
             onClick={() => setShowMarkers(!showMarkers)}
-            className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition"
+            className="px-4 py-2 bg-black text-white hover: transition"
           >
             {showMarkers ? "Hide Markers" : "Show Markers"}
           </button>
         </div>
-
       </MapContainer>
     </div>
   );

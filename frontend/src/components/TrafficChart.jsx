@@ -45,7 +45,7 @@ const TrafficChart = () => {
   };
 
   return (
-    <div className='pt-3 px-6'>
+    <div className='mt-5 px-6'>
         <Line data={data} />
     </div>
   )

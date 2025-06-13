@@ -11,7 +11,7 @@ const AlertsPanel = () => {
   }, []);
 
   return (
-    <div className="bg-white p-4 rounded shadow">
+    <div className="bg-white mt-5 rounded px-4">
       <h2 className="font-bold text-lg mb-2">Congestion Alerts</h2>
       {alerts.map(alert => (
         <div key={alert._id} className="text-sm border-b py-1">

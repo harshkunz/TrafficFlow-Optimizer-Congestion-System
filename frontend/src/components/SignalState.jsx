@@ -11,7 +11,7 @@ const SignalState = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="mt-5 px-4">
       <h2 className="font-bold text-lg mb-2">Signal Timings</h2>
       {signals.map(sig => (
         <div key={sig._id} className="mb-2">
