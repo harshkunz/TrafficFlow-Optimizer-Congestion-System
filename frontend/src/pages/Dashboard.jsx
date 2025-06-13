@@ -6,7 +6,7 @@ import TopBar from '../components/TopBar';
  
 const Dashboard = () => {
   return (
-    <div className='bg-white'>
+    <div className="bg-black">
       <TopBar />
       <MapView />
       <TrafficChart />
